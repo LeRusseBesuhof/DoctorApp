@@ -7,18 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37CDAB042C721896001E8006 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAB032C721896001E8006 /* MainViewModel.swift */; };
+		37CDAB062C722DD7001E8006 /* DoctorCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAB052C722DD7001E8006 /* DoctorCardView.swift */; };
+		37CDAB092C723531001E8006 /* SFPRODISPLAYBOLD.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 37CDAB082C723531001E8006 /* SFPRODISPLAYBOLD.OTF */; };
+		37CDAB0B2C723538001E8006 /* SFPRODISPLAYMEDIUM.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 37CDAB0A2C723538001E8006 /* SFPRODISPLAYMEDIUM.OTF */; };
+		37CDAB0D2C723541001E8006 /* SFPRODISPLAYREGULAR.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 37CDAB0C2C723541001E8006 /* SFPRODISPLAYREGULAR.OTF */; };
+		37CDAB112C7235C2001E8006 /* String.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CDAB102C7235C2001E8006 /* String.ext.swift */; };
 		37F4EF262C70955C00597F6A /* DoctorAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F4EF252C70955C00597F6A /* DoctorAppApp.swift */; };
-		37F4EF282C70955C00597F6A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F4EF272C70955C00597F6A /* ContentView.swift */; };
 		37F4EF2A2C70955E00597F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37F4EF292C70955E00597F6A /* Assets.xcassets */; };
 		37F4EF2D2C70955E00597F6A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37F4EF2C2C70955E00597F6A /* Preview Assets.xcassets */; };
+		37F4EF3E2C71C19E00597F6A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F4EF3D2C71C19E00597F6A /* MainView.swift */; };
+		37F4EF402C71C4BA00597F6A /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F4EF3F2C71C4BA00597F6A /* SwiftUIView.swift */; };
+		37F4EF422C71D04800597F6A /* SegmentControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F4EF412C71D04800597F6A /* SegmentControlView.swift */; };
+		37F4EF442C7209AB00597F6A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F4EF432C7209AB00597F6A /* NetworkService.swift */; };
+		37F4EF462C720A0900597F6A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F4EF452C720A0900597F6A /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37CDAB032C721896001E8006 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		37CDAB052C722DD7001E8006 /* DoctorCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorCardView.swift; sourceTree = "<group>"; };
+		37CDAB082C723531001E8006 /* SFPRODISPLAYBOLD.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYBOLD.OTF; sourceTree = "<group>"; };
+		37CDAB0A2C723538001E8006 /* SFPRODISPLAYMEDIUM.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYMEDIUM.OTF; sourceTree = "<group>"; };
+		37CDAB0C2C723541001E8006 /* SFPRODISPLAYREGULAR.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYREGULAR.OTF; sourceTree = "<group>"; };
+		37CDAB0E2C723556001E8006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		37CDAB102C7235C2001E8006 /* String.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.ext.swift; sourceTree = "<group>"; };
 		37F4EF222C70955C00597F6A /* DoctorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F4EF252C70955C00597F6A /* DoctorAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorAppApp.swift; sourceTree = "<group>"; };
-		37F4EF272C70955C00597F6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		37F4EF292C70955E00597F6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37F4EF2C2C70955E00597F6A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		37F4EF3D2C71C19E00597F6A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		37F4EF3F2C71C4BA00597F6A /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		37F4EF412C71D04800597F6A /* SegmentControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControlView.swift; sourceTree = "<group>"; };
+		37F4EF432C7209AB00597F6A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		37F4EF452C720A0900597F6A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +53,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37CDAB072C72350C001E8006 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				37CDAB082C723531001E8006 /* SFPRODISPLAYBOLD.OTF */,
+				37CDAB0A2C723538001E8006 /* SFPRODISPLAYMEDIUM.OTF */,
+				37CDAB0C2C723541001E8006 /* SFPRODISPLAYREGULAR.OTF */,
+				37CDAB102C7235C2001E8006 /* String.ext.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		37F4EF192C70955C00597F6A = {
 			isa = PBXGroup;
 			children = (
@@ -51,10 +83,14 @@
 		37F4EF242C70955C00597F6A /* DoctorApp */ = {
 			isa = PBXGroup;
 			children = (
+				37CDAB0E2C723556001E8006 /* Info.plist */,
+				37CDAB072C72350C001E8006 /* Fonts */,
+				37F4EF432C7209AB00597F6A /* NetworkService.swift */,
+				37F4EF372C70E9CD00597F6A /* MainView */,
 				37F4EF252C70955C00597F6A /* DoctorAppApp.swift */,
-				37F4EF272C70955C00597F6A /* ContentView.swift */,
 				37F4EF292C70955E00597F6A /* Assets.xcassets */,
 				37F4EF2B2C70955E00597F6A /* Preview Content */,
+				37F4EF3F2C71C4BA00597F6A /* SwiftUIView.swift */,
 			);
 			path = DoctorApp;
 			sourceTree = "<group>";
@@ -65,6 +101,42 @@
 				37F4EF2C2C70955E00597F6A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		37F4EF372C70E9CD00597F6A /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				37F4EF3A2C70E9F000597F6A /* Model */,
+				37F4EF392C70E9EC00597F6A /* View */,
+				37F4EF382C70E9E200597F6A /* ViewModel */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		37F4EF382C70E9E200597F6A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				37CDAB032C721896001E8006 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		37F4EF392C70E9EC00597F6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				37F4EF3D2C71C19E00597F6A /* MainView.swift */,
+				37F4EF412C71D04800597F6A /* SegmentControlView.swift */,
+				37CDAB052C722DD7001E8006 /* DoctorCardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		37F4EF3A2C70E9F000597F6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				37F4EF452C720A0900597F6A /* Model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,6 +183,8 @@
 				Base,
 			);
 			mainGroup = 37F4EF192C70955C00597F6A;
+			packageReferences = (
+			);
 			productRefGroup = 37F4EF232C70955C00597F6A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +200,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				37F4EF2D2C70955E00597F6A /* Preview Assets.xcassets in Resources */,
+				37CDAB092C723531001E8006 /* SFPRODISPLAYBOLD.OTF in Resources */,
+				37CDAB0B2C723538001E8006 /* SFPRODISPLAYMEDIUM.OTF in Resources */,
+				37CDAB0D2C723541001E8006 /* SFPRODISPLAYREGULAR.OTF in Resources */,
 				37F4EF2A2C70955E00597F6A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +214,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37F4EF282C70955C00597F6A /* ContentView.swift in Sources */,
+				37CDAB042C721896001E8006 /* MainViewModel.swift in Sources */,
+				37F4EF442C7209AB00597F6A /* NetworkService.swift in Sources */,
+				37F4EF3E2C71C19E00597F6A /* MainView.swift in Sources */,
 				37F4EF262C70955C00597F6A /* DoctorAppApp.swift in Sources */,
+				37F4EF462C720A0900597F6A /* Model.swift in Sources */,
+				37F4EF422C71D04800597F6A /* SegmentControlView.swift in Sources */,
+				37CDAB112C7235C2001E8006 /* String.ext.swift in Sources */,
+				37F4EF402C71C4BA00597F6A /* SwiftUIView.swift in Sources */,
+				37CDAB062C722DD7001E8006 /* DoctorCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +359,7 @@
 				DEVELOPMENT_TEAM = T3Y57V3BSA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DoctorApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +389,7 @@
 				DEVELOPMENT_TEAM = T3Y57V3BSA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DoctorApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
