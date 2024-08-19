@@ -1,21 +1,28 @@
 import Foundation
 
-protocol MainViewModelProtocol : AnyObject {
-    func setData()
-}
-
-final class MainViewModel : MainViewModelProtocol, ObservableObject {
-    private let networkService = NetworkService()
-    @Published var data : Welcome!
+final class MainViewModel : ObservableObject {
+    private let dataService = DataService()
+    @Published var data : [User] = []
     
-    func setData() {
-        networkService.getRequest { data in
+    func getNetworkDoctors() {
+        dataService.sendRequest { data in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 
-                self.data = data
-                print(self.data)
+                self.data = data.record.data.users
             }
+        }
+    }
+    
+    func getLocalDoctors() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            guard let users = dataService.loadUsersFromJSON() else {
+                print("no doctors found")
+                return
+            }
+            self.data = users
         }
     }
 }

@@ -4,7 +4,7 @@ import SwiftUI
 struct DoctorAppApp: App {
     var body: some Scene {
         WindowGroup {
-            DoctorCardView()
+            MainView()
         }
     }
 }

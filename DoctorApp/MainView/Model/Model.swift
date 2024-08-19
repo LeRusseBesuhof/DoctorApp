@@ -34,7 +34,7 @@ struct DataClass: Codable {
 }
 
 // MARK: - User
-struct User: Codable {
+struct User: Codable, Identifiable {
     let id, slug, firstName, patronymic: String
     let lastName, gender: String
     let genderLabel: GenderLabel

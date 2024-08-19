@@ -1,26 +1,38 @@
 import SwiftUI
 
 struct DoctorCardView: View {
+    let docData : User
+    @State private var profileImage : Image!
+    @Binding var isPushed : Bool
+    @State private var isDoctorProfileView : Bool = false
     @State private var isFavourite : Bool = false
     var body: some View {
         VStack(content: {
             HStack(alignment: .top, content: {
-                Image(.default)
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .scaledToFill()
-                    .clipShape(Circle())
+                if let urlString = docData.avatar {
+                    AsyncImage(url: URL(string: urlString)) { img in
+                        // profileImage = img
+                        img.resizable()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .setupImage()
+                } else {
+                    Image(.default)
+                        .resizable()
+                        .setupImage()
+                }
                 Spacer()
                 VStack(alignment: .leading, spacing: 12, content: {
-                    VStack(content: {
-                        Text("last name")
-                            .setup()
-                        Text("first name + patronymic")
-                            .setup()
+                    VStack(spacing: 3, content: {
+                        Text(docData.lastName)
+                            .setupDoctorCardText()
+                        Text("\(docData.firstName) \(docData.patronymic)" )
+                            .setupDoctorCardText()
                     })
                     HStack(content: {
                         ForEach(0..<5) { ind in
-                            if ind < 3 {
+                            if ind < docData.rank {
                                 Image(systemName: "star.fill")
                                     .foregroundStyle(.appPink)
                             } else {
@@ -29,59 +41,42 @@ struct DoctorCardView: View {
                             }
                         }
                     })
-                    Text("profession \u{00B7} years")
+                    // TODO: make correct experience
+                    let specializationName = docData.specialization.isEmpty ? "Врач" : docData.specialization[0].name
+                    Text("\(getProfession(specializationName)) \u{00B7} стаж \(docData.seniority) лет")
                         .frame(width: 205, alignment: .leading)
                         .font(.custom(.regular, size: 20))
                         .foregroundStyle(.appDarkGray)
-                    Text("от 600p")
+                    Text("от \(docData.hospitalPrice) ₽")
                         .font(.custom(.medium, size: 20))
                 })
                 Spacer()
-                Button(action: {
-                    isFavourite.toggle()
-                }, label: {
-                    if isFavourite {
-                        Image(systemName: "heart.fill")
-                            .tint(.appPink)
-                    } else {
-                        Image(systemName: "heart")
-                            .tint(.gray)
-                    }
-                })
-                
+                if docData.isFavorite {
+                    Image(systemName: "heart.fill")
+                        .tint(.appPink)
+                } else {
+                    Image(systemName: "heart")
+                        .tint(.gray)
+                }
             })
             .padding(.top)
             .padding(.horizontal)
             Button("Записаться") {
-                //
+                isPushed.toggle()
+                print(isPushed)
             }
-            .foregroundStyle(.white)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical)
-            .background(.appPink)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .padding()
+            .navigationDestination(isPresented: $isPushed, destination: {
+                print(docData.firstName)
+                return DoctorProfileView(Image(systemName: "heart"), docData)
+            })
         })
         .frame(maxWidth: .infinity)
         .background(.appLightGray)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
         .padding()
     }
-}
-
-#Preview {
-    DoctorCardView()
-}
-
-extension Text {
-    func setup() -> some View {
-        self.modifier(TextModifier())
-    }
-}
-
-struct TextModifier : ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.custom(.medium, size: 20))
-            .frame(width: 205, alignment: .leading)
+    
+    func getProfession(_ inputText: String) -> String {
+        inputText.isEmpty ? "Врач" : inputText
     }
 }
