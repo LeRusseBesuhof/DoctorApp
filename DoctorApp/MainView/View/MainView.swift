@@ -2,21 +2,28 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject private var viewModel = MainViewModel()
-    @State private var isPushed : Bool = false
     @State private var searchText : String = ""
+    @State private var isPushed : Bool = false
+    @State private var chosenDoctor : User?
+    @State private var profileImage : Image?
     var body: some View {
         TabView {
             NavigationStack {
                 ScrollView(.vertical) {
-                    VStack(spacing: -10, content: {
+                    VStack(spacing: -10,
+                           content: {
                         SegmentControlView()
-                        LazyVStack(spacing: -10) {
-                            ForEach(viewModel.data) { item in
-                                DoctorCardView(docData: item, isPushed: $isPushed)
-                            }
-                        }
+                        DoctorStackView(
+                            docBase: viewModel.data,
+                            chosenDoctor: $chosenDoctor,
+                            profileImage: $profileImage,
+                            isPushed: $isPushed
+                        )
                     })
                 }
+                .navigationDestination(isPresented: $isPushed, destination: {
+                    DoctorProfileView(profileImage ?? Image(uiImage: .default), chosenDoctor)
+                })
                 .navigationTitle("Педиатры")
                 .navigationBarTitleDisplayMode(.inline)
                 .frame(maxWidth: .infinity)

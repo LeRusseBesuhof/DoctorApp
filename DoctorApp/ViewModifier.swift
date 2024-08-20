@@ -34,6 +34,10 @@ extension View {
     func setupImage() -> some View {
         self.modifier(ImageModifier())
     }
+    
+    func setupButton() -> some View {
+        self.modifier(ButtonModifier())
+    }
 }
 
 struct ImageModifier : ViewModifier {

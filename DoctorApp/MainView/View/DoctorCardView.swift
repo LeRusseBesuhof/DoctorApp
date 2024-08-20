@@ -2,21 +2,32 @@ import SwiftUI
 
 struct DoctorCardView: View {
     let docData : User
-    @State private var profileImage : Image!
+    @State private var currentProfileImage : Image!
+    @Binding var chosenDoctor : User?
+    @Binding var profileImage : Image?
     @Binding var isPushed : Bool
-    @State private var isDoctorProfileView : Bool = false
-    @State private var isFavourite : Bool = false
+    
     var body: some View {
         VStack(content: {
             HStack(alignment: .top, content: {
                 if let urlString = docData.avatar {
-                    AsyncImage(url: URL(string: urlString)) { img in
-                        // profileImage = img
-                        img.resizable()
-                    } placeholder: {
-                        ProgressView()
+                    AsyncImage(url: URL(string: urlString)) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .setupImage()
+                                .onAppear {
+                                    currentProfileImage = image
+                                }
+                        case .failure(_):
+                            Text("Error loading image")
+                        @unknown default:
+                            fatalError()
+                        }
                     }
-                    .setupImage()
                 } else {
                     Image(.default)
                         .resizable()
@@ -62,13 +73,11 @@ struct DoctorCardView: View {
             .padding(.top)
             .padding(.horizontal)
             Button("Записаться") {
+                chosenDoctor = docData
+                profileImage = currentProfileImage
                 isPushed.toggle()
-                print(isPushed)
             }
-            .navigationDestination(isPresented: $isPushed, destination: {
-                print(docData.firstName)
-                return DoctorProfileView(Image(systemName: "heart"), docData)
-            })
+            .setupButton()
         })
         .frame(maxWidth: .infinity)
         .background(.appLightGray)
