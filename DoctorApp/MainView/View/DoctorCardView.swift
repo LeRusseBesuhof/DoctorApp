@@ -53,7 +53,6 @@ struct DoctorCardView: View {
                             }
                         }
                     })
-                    // TODO: make correct experience
                     Text("\(getSpecialization(docData.specialization)) \u{00B7} стаж \(docData.seniority) \(String.getSeniority(docData.seniority))")
                         .frame(width: 205, alignment: .leading)
                         .font(.custom(.regular, size: 20))
