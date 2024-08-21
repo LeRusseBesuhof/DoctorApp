@@ -25,7 +25,7 @@ struct DoctorProfileView: View {
                         })
                     })
                     VStack(alignment: .leading, spacing: 13, content: {
-                        InfoHStack(imageName: "clock", personText: "Опыт работы: \(userData.seniority) лет")
+                        InfoHStack(imageName: "clock", personText: "Опыт работы: \(userData.seniority) \(String.getSeniority(userData.seniority))")
                         
                         let category = userData.categoryLabel.rawValue
                         switch category {

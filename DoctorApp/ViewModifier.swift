@@ -23,7 +23,7 @@ struct ButtonModifier : ViewModifier {
         content
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
-            .padding(.vertical)
+            .padding(.vertical, 12)
             .background(.appPink)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding()

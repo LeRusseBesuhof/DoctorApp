@@ -3,6 +3,7 @@ import SwiftUI
 struct MainView: View {
     @StateObject private var viewModel = MainViewModel()
     @State private var searchText : String = ""
+    @State private var chosenControlElement : ChooseParameter = .cost
     @State private var isPushed : Bool = false
     @State private var chosenDoctor : User?
     @State private var profileImage : Image?
@@ -12,12 +13,14 @@ struct MainView: View {
                 ScrollView(.vertical) {
                     VStack(spacing: -10,
                            content: {
-                        SegmentControlView()
+                        SegmentControlView($chosenControlElement)
                         DoctorStackView(
                             docBase: viewModel.data,
                             chosenDoctor: $chosenDoctor,
                             profileImage: $profileImage,
-                            isPushed: $isPushed
+                            isPushed: $isPushed,
+                            searchableString: searchText,
+                            chosenControlElement: chosenControlElement
                         )
                     })
                 }

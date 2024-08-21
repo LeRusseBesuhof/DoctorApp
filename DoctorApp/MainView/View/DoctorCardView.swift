@@ -3,6 +3,7 @@ import SwiftUI
 struct DoctorCardView: View {
     let docData : User
     @State private var currentProfileImage : Image!
+    @State private var isFavorite : Bool = false
     @Binding var chosenDoctor : User?
     @Binding var profileImage : Image?
     @Binding var isPushed : Bool
@@ -53,8 +54,7 @@ struct DoctorCardView: View {
                         }
                     })
                     // TODO: make correct experience
-                    let specializationName = docData.specialization.isEmpty ? "Врач" : docData.specialization[0].name
-                    Text("\(getProfession(specializationName)) \u{00B7} стаж \(docData.seniority) лет")
+                    Text("\(getSpecialization(docData.specialization)) \u{00B7} стаж \(docData.seniority) \(String.getSeniority(docData.seniority))")
                         .frame(width: 205, alignment: .leading)
                         .font(.custom(.regular, size: 20))
                         .foregroundStyle(.appDarkGray)
@@ -62,13 +62,17 @@ struct DoctorCardView: View {
                         .font(.custom(.medium, size: 20))
                 })
                 Spacer()
-                if docData.isFavorite {
-                    Image(systemName: "heart.fill")
-                        .tint(.appPink)
-                } else {
-                    Image(systemName: "heart")
-                        .tint(.gray)
-                }
+                Button(action: {
+                    isFavorite.toggle()
+                }, label: {
+                    if isFavorite {
+                        Image(systemName: "heart.fill")
+                            .tint(.appPink)
+                    } else {
+                        Image(systemName: "heart")
+                            .tint(.gray)
+                    }
+                })
             })
             .padding(.top)
             .padding(.horizontal)
@@ -85,7 +89,15 @@ struct DoctorCardView: View {
         .padding()
     }
     
-    func getProfession(_ inputText: String) -> String {
-        inputText.isEmpty ? "Врач" : inputText
+    func getSpecialization(_ specArray: [Specialization]) -> String {
+        guard !specArray.isEmpty else {
+            return "Врач"
+        }
+        var specialization = String()
+        for spec in specArray {
+            specialization += "\(spec.name)\n"
+        }
+        specialization.removeLast(2)
+        return specialization
     }
 }

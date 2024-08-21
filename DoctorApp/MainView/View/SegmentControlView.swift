@@ -1,19 +1,26 @@
 import SwiftUI
 
 struct SegmentControlView: View {
-    
-    init() {
+    init(_ selection: Binding<ChooseParameter>) {
         UISegmentedControl.appearance().backgroundColor = .white
         UISegmentedControl.appearance().selectedSegmentTintColor = .appPink
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor : UIColor.white], for: .selected)
+        
+        self._selection = selection
     }
     
-    @State private var selection : ChooseParameters = .cost
+    @Binding var selection : ChooseParameter
     
     var body: some View {
         Picker("Choose parameter", selection: $selection) {
-            ForEach(ChooseParameters.allCases, id: \.self) {
-                Text($0.rawValue)
+            ForEach(ChooseParameter.allCases, id: \.self) {
+                if selection == $0 {
+                    Text($0.rawValue + " \u{2193}")
+                        .tag($0.self)
+                } else {
+                    Text($0.rawValue)
+                        .tag($0.self)
+                }
             }
         }
         .pickerStyle(SegmentedPickerStyle())
@@ -21,8 +28,8 @@ struct SegmentControlView: View {
     }
 }
 
-enum ChooseParameters : String, CaseIterable {
-    case cost = "По цене \u{2193}"
-    case seniority = "По стажу \u{2193}"
-    case rating = "По рейтингу \u{2193}"
+enum ChooseParameter : String, CaseIterable, Hashable {
+    case cost = "По цене"
+    case seniority = "По стажу"
+    case rating = "По рейтингу"
 }
