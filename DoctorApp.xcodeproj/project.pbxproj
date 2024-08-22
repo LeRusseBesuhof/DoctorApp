@@ -120,13 +120,14 @@
 			isa = PBXGroup;
 			children = (
 				37F4EF372C70E9CD00597F6A /* MainView */,
+				37250E012C76700700C282D4 /* ServiceView */,
 				37CDAB142C7376A4001E8006 /* DoctorProfileView */,
-				37CDAB072C72350C001E8006 /* Fonts */,
 				37250DFE2C766B5600C282D4 /* Extension */,
+				37CDAB072C72350C001E8006 /* Fonts */,
+				37CDAB182C738279001E8006 /* ViewModifier.swift */,
+				37F4EF432C7209AB00597F6A /* DataService.swift */,
 				37CDAB0E2C723556001E8006 /* Info.plist */,
 				37F4EF252C70955C00597F6A /* DoctorAppApp.swift */,
-				37F4EF432C7209AB00597F6A /* DataService.swift */,
-				37CDAB182C738279001E8006 /* ViewModifier.swift */,
 				37CDAB122C7361B6001E8006 /* 655b754e0574da7622c94aa4.json */,
 				37F4EF292C70955E00597F6A /* Assets.xcassets */,
 				37F4EF2B2C70955E00597F6A /* Preview Content */,
@@ -146,7 +147,6 @@
 		37F4EF372C70E9CD00597F6A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				37250E012C76700700C282D4 /* ServiceView */,
 				37F4EF3A2C70E9F000597F6A /* Model */,
 				37F4EF392C70E9EC00597F6A /* View */,
 				37F4EF382C70E9E200597F6A /* ViewModel */,

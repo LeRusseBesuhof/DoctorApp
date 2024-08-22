@@ -37,8 +37,6 @@ final class DataService : DataServiceProtocol {
         do {
             let data = try Data(contentsOf: url)
             let dataResponse = try JSONDecoder().decode(Welcome.self, from: data)
-            // let decoder = JSONDecoder()
-            //let users = try decoder.decode([User].self, from: data)
             let users = dataResponse.record.data.users
             return users
         } catch {

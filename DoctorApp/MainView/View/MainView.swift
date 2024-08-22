@@ -5,6 +5,7 @@ struct MainView: View {
     @State private var searchText : String = ""
     @State private var chosenControlElement : ChooseParameter = .cost
     @State private var isPushed : Bool = false
+    @State private var isPricePagePushed : Bool = false
     @State private var chosenDoctor : User?
     @State private var profileImage : Image?
     var body: some View {
@@ -23,9 +24,10 @@ struct MainView: View {
                             chosenControlElement: chosenControlElement
                         )
                     })
+                    .padding(.vertical, -20)
                 }
                 .navigationDestination(isPresented: $isPushed, destination: {
-                    DoctorProfileView(profileImage ?? Image(uiImage: .default), chosenDoctor)
+                    DoctorProfileView(profileImage ?? Image(uiImage: .default), chosenDoctor, $isPricePagePushed)
                 })
                 .navigationTitle("Педиатры")
                 .navigationBarTitleDisplayMode(.inline)

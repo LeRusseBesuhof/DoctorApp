@@ -2,15 +2,17 @@ import SwiftUI
 
 struct DoctorProfileView: View {
     var profileImage : Image
-    var userData : User?
+    var docData : User?
+    @Binding var isPricePagePushed : Bool
     
-    init(_ profileImage: Image, _ userData: User?) {
+    init(_ profileImage: Image, _ docData: User?, _ isPricePagePushed: Binding<Bool>) {
         self.profileImage = profileImage
-        self.userData = userData
+        self.docData = docData
+        self._isPricePagePushed = isPricePagePushed
     }
     
     var body: some View {
-        if let userData {
+        if let docData {
             VStack(alignment: .leading, content: {
                 VStack(alignment: .leading, spacing: 40, content: {
                     HStack(spacing: 16, content: {
@@ -18,32 +20,32 @@ struct DoctorProfileView: View {
                             .resizable()
                             .setupImage()
                         VStack(alignment: .leading, spacing: 3, content: {
-                            Text(userData.lastName)
+                            Text(docData.lastName)
                                 .font(.custom(.medium, size: 16))
-                            Text("\(userData.firstName) \(userData.patronymic)")
+                            Text("\(docData.firstName) \(docData.patronymic)")
                                 .font(.custom(.medium, size: 16))
                         })
                     })
                     VStack(alignment: .leading, spacing: 13, content: {
-                        InfoHStack(imageName: "clock", personText: "Опыт работы: \(userData.seniority) \(String.getSeniority(userData.seniority))")
+                        InfoHStack(imageName: "clock", personText: "Опыт работы: \(docData.seniority) \(String.getSeniority(docData.seniority))")
                         
-                        let category = userData.categoryLabel.rawValue
+                        let category = docData.categoryLabel.rawValue
                         switch category {
                         case "нет": InfoHStack(imageName: "cross.case", personText: "Врач без категории")
                         default: InfoHStack(imageName: "cross.case", personText: "Врач: \(category) категория")
                         }
                         
-                        if let higherEducation = userData.higherEducation.last?.specialization {
+                        if let higherEducation = docData.higherEducation.last?.specialization {
                             InfoHStack(imageName: "graduationcap", personText: higherEducation)
                         } else {
-                            if let education = userData.educationTypeLabel?.name {
+                            if let education = docData.educationTypeLabel?.name {
                                 InfoHStack(imageName: "graduationcap", personText: education)
                             } else {
                                 InfoHStack(imageName: "graduationcap", personText: "Нет образования")
                             }
                         }
                         
-                        if let organization = userData.workExpirience.last?.organization {
+                        if let organization = docData.workExpirience.last?.organization {
                             InfoHStack(imageName: "mappin.and.ellipse", personText: organization)
                         } else {
                             InfoHStack(imageName: "mappin.and.ellipse", personText: "На данный момент без работы")
@@ -54,7 +56,7 @@ struct DoctorProfileView: View {
                             Text("Стоимость услуг")
                                 .font(.custom(.bold, size: 16))
                             Spacer()
-                            Text("от \(userData.hospitalPrice) ₽")
+                            Text("от \(docData.hospitalPrice) ₽")
                                 .font(.custom(.bold, size: 16))
                         })
                         .padding()
@@ -66,10 +68,20 @@ struct DoctorProfileView: View {
                 .padding()
                 .padding(.horizontal, 5)
                 Spacer()
-                Text("Записаться")
-                    .setupWriteButton()
+                Button("Записаться") {
+                    isPricePagePushed.toggle()
+                }
+                .setupButton()
             })
-            .navigationTitle("Педиатры")
+            .navigationDestination(isPresented: $isPricePagePushed,
+                                   destination: {
+                ServiceView(
+                    videoChatPrice: docData.videoChatPrice,
+                    textChatPrice: docData.textChatPrice,
+                    hospitalPrice: docData.hospitalPrice
+                )
+            })
+            .navigationTitle("Педиатр")
             .navigationBarTitleDisplayMode(.inline)
             .background(.appLightGray)
         } else {

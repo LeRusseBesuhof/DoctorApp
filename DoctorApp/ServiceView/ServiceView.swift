@@ -1,13 +1,18 @@
 import SwiftUI
 
 struct ServiceView: View {
+    var videoChatPrice : Int
+    var textChatPrice : Int
+    var hospitalPrice : Int
     var body: some View {
         VStack(alignment: .leading, spacing: 24, content: {
-            ServiceFieldView(serviceText: "Видеоконсультация", serviceCost: 400)
-            ServiceFieldView(serviceText: "Чат с врачом", serviceCost: 400)
-            ServiceFieldView(serviceText: "Приём в клинике", serviceParameter: "В клинике", serviceCost: 400)
+            ServiceFieldView(serviceText: "Видеоконсультация", servicePrice: videoChatPrice)
+            ServiceFieldView(serviceText: "Чат с врачом", servicePrice: textChatPrice)
+            ServiceFieldView(serviceText: "Приём в клинике", serviceParameter: "В клинике", servicePrice: hospitalPrice)
             Spacer()
         })
+        .navigationTitle("Стоимость услуг")
+        .navigationBarTitleDisplayMode(.inline)
         .padding()
         .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height)
         .background(.appLightGray)
@@ -17,7 +22,7 @@ struct ServiceView: View {
 struct ServiceFieldView : View {
     var serviceText : String
     var serviceParameter : String = "40 мин"
-    var serviceCost : Int
+    var servicePrice : Int
     var body: some View {
         VStack(alignment: .leading, spacing: 12, content: {
             Text(serviceText)
@@ -26,7 +31,7 @@ struct ServiceFieldView : View {
                 Text(serviceParameter)
                     .font(.custom(.regular, size: 16))
                 Spacer()
-                Text("от \(serviceCost) ₽")
+                Text("от \(servicePrice) ₽")
                     .font(.custom(.bold, size: 16))
             })
             .padding()
@@ -34,8 +39,4 @@ struct ServiceFieldView : View {
             .clipShape(RoundedRectangle(cornerRadius: 10))
         })
     }
-}
-
-#Preview {
-    ServiceView()
 }
