@@ -4,10 +4,6 @@ extension Text {
     func setupDoctorCardText() -> some View {
         self.modifier(DoctorCardTextModifier())
     }
-    
-    func setupWriteButton() -> some View {
-        self.modifier(ButtonModifier())
-    }
 }
 
 struct DoctorCardTextModifier : ViewModifier {
@@ -19,24 +15,15 @@ struct DoctorCardTextModifier : ViewModifier {
 }
 
 struct ButtonModifier : ViewModifier {
+    var isEmpty : Bool
     func body(content: Content) -> some View {
         content
-            .foregroundStyle(.white)
+            .foregroundStyle(isEmpty ? .white : .black)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
-            .background(.appPink)
+            .background(isEmpty ? .appPink : .white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding()
-    }
-}
-
-extension View {
-    func setupImage() -> some View {
-        self.modifier(ImageModifier())
-    }
-    
-    func setupButton() -> some View {
-        self.modifier(ButtonModifier())
     }
 }
 
@@ -46,5 +33,15 @@ struct ImageModifier : ViewModifier {
             .scaledToFill()
             .frame(width: 50, height: 50)
             .clipShape(Circle())
+    }
+}
+
+extension View {
+    func setupImage() -> some View {
+        self.modifier(ImageModifier())
+    }
+    
+    func setupButton(_ isEmpty: Bool = true) -> some View {
+        self.modifier(ButtonModifier(isEmpty: isEmpty))
     }
 }

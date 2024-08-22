@@ -2,11 +2,9 @@ import SwiftUI
 
 struct DoctorCardView: View {
     let docData : User
-    @State private var currentProfileImage : Image!
+    @State private var currentProfileImage : Image = Image(.default)
     @State private var isFavorite : Bool = false
-    @Binding var chosenDoctor : User?
-    @Binding var profileImage : Image?
-    @Binding var isPushed : Bool
+    @StateObject var viewModel : DoctorStackViewModel
     
     var body: some View {
         VStack(content: {
@@ -53,7 +51,7 @@ struct DoctorCardView: View {
                             }
                         }
                     })
-                    Text("\(getSpecialization(docData.specialization)) \u{00B7} стаж \(docData.seniority) \(String.getSeniority(docData.seniority))")
+                    Text("\(viewModel.getSpecialization(docData.specialization)) \u{00B7} стаж \(docData.seniority) \(String.getSeniority(docData.seniority))")
                         .frame(width: 205, alignment: .leading)
                         .font(.custom(.regular, size: 20))
                         .foregroundStyle(.appDarkGray)
@@ -75,28 +73,19 @@ struct DoctorCardView: View {
             })
             .padding(.top)
             .padding(.horizontal)
-            Button("Записаться") {
-                chosenDoctor = docData
-                profileImage = currentProfileImage
-                isPushed.toggle()
+            let isFreeTime = !docData.freeReceptionTime.isEmpty
+            Button(isFreeTime ? "Записаться" : "Нет свободного расписания") {
+                if isFreeTime {
+                    viewModel.chosenDoctor = docData
+                    viewModel.profileImage = currentProfileImage
+                    viewModel.isPushed.toggle()
+                }
             }
-            .setupButton()
+            .setupButton(isFreeTime)
         })
         .frame(maxWidth: .infinity)
         .background(.appLightGray)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .padding()
-    }
-    
-    func getSpecialization(_ specArray: [Specialization]) -> String {
-        guard !specArray.isEmpty else {
-            return "Врач"
-        }
-        var specialization = String()
-        for spec in specArray {
-            specialization += "\(spec.name)\n"
-        }
-        specialization.removeLast(2)
-        return specialization
     }
 }

@@ -3,31 +3,34 @@ import SwiftUI
 struct MainView: View {
     @StateObject private var viewModel = MainViewModel()
     @State private var searchText : String = ""
-    @State private var chosenControlElement : ChooseParameter = .cost
-    @State private var isPushed : Bool = false
-    @State private var isPricePagePushed : Bool = false
-    @State private var chosenDoctor : User?
-    @State private var profileImage : Image?
     var body: some View {
         TabView {
             NavigationStack {
                 ScrollView(.vertical) {
                     VStack(spacing: -10,
                            content: {
-                        SegmentControlView($chosenControlElement)
+                        SegmentControlView($viewModel.chosenControlElement)
                         DoctorStackView(
-                            docBase: viewModel.data,
-                            chosenDoctor: $chosenDoctor,
-                            profileImage: $profileImage,
-                            isPushed: $isPushed,
+                            docBase: viewModel.data, 
+                            viewModel: DoctorStackViewModel(
+                                $viewModel.chosenDoctor,
+                                $viewModel.profileImage,
+                                $viewModel.isPushed
+                            ),
                             searchableString: searchText,
-                            chosenControlElement: chosenControlElement
+                            chosenControlElement: viewModel.chosenControlElement
                         )
                     })
                     .padding(.vertical, -20)
                 }
-                .navigationDestination(isPresented: $isPushed, destination: {
-                    DoctorProfileView(profileImage ?? Image(uiImage: .default), chosenDoctor, $isPricePagePushed)
+                .navigationDestination(isPresented: $viewModel.isPushed,
+                                       destination: {
+                    DoctorProfileView(
+                        viewModel: DoctorProfileViewModel(
+                            $viewModel.profileImage,
+                            $viewModel.chosenDoctor
+                        )
+                    )
                 })
                 .navigationTitle("Педиатры")
                 .navigationBarTitleDisplayMode(.inline)
