@@ -9,7 +9,7 @@ struct MainView: View {
                 ScrollView(.vertical) {
                     VStack(spacing: -10,
                            content: {
-                        SegmentControlView($viewModel.chosenControlElement)
+                        SegmentControlView($viewModel.data)
                         DoctorStackView(
                             docBase: viewModel.data, 
                             viewModel: DoctorStackViewModel(
@@ -17,8 +17,7 @@ struct MainView: View {
                                 $viewModel.profileImage,
                                 $viewModel.isPushed
                             ),
-                            searchableString: searchText,
-                            chosenControlElement: viewModel.chosenControlElement
+                            searchableString: searchText
                         )
                     })
                     .padding(.vertical, -20)

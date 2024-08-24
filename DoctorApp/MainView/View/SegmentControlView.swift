@@ -1,45 +1,85 @@
 import SwiftUI
 
 struct SegmentControlView: View {
-    init(_ selection: Binding<ChooseParameter>) {
+    init(_ docArray : Binding<[User]>) {
         UISegmentedControl.appearance().backgroundColor = .white
         UISegmentedControl.appearance().selectedSegmentTintColor = .appPink
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor : UIColor.white], for: .selected)
         
-        self._selection = selection
+        self._array = docArray
     }
     
-    @Binding var selection : ChooseParameter
-    @State var arrowCymbol : String = " \u{2193}"
-    @State var arrowToggler : Bool = false
+    @State var selection: ChooseParameter = .cost
+    @Binding var array : [User]
+    
+    @State private var arrowSymbols: [ChooseParameter: String] = [
+        .cost: " \u{2193}",
+        .seniority: " \u{2193}",
+        .rating: " \u{2193}"
+    ]
+    @State private var arrowTogglers: [ChooseParameter: Bool] = [
+        .cost: false,
+        .seniority: false,
+        .rating: false
+    ]
     
     var body: some View {
-        Picker("Choose parameter", selection: $selection) {
-            ForEach(ChooseParameter.allCases, id: \.self) {
-                if selection == $0 {
-                    Text($0.rawValue + arrowCymbol)
-                        .tag($0.self)
-                } else {
-                    Text($0.rawValue)
-                        .tag($0.self)
+        ZStack {
+            Picker("Choose parameter", selection: $selection) {
+                ForEach(ChooseParameter.allCases, id: \.self) { option in
+                    Text(option.rawValue + arrowSymbols[option]!)
+                        .tag(option)
+                        .tint(.appPink)
                 }
             }
-        }
-        .onTapGesture(count: 2, perform: {
-            if arrowToggler {
-                arrowCymbol = " \u{2191}"
-                arrowToggler.toggle()
-            } else {
-                arrowCymbol = " \u{2193}"
-                arrowToggler.toggle()
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+            
+            HStack {
+                ForEach(ChooseParameter.allCases, id: \.self) { option in
+                    Button(action: {
+                        handleSelection(option)
+                    }) {
+                        Color.white
+                    }
+                    .opacity(0.1)
+                }
             }
-        })
-        .pickerStyle(SegmentedPickerStyle())
-        .padding()
+            .allowsHitTesting(true)
+            .buttonStyle(PlainButtonStyle())
+        }
     }
     
-    func arrowCymbolToggle(_ toggler: Bool) -> String {
-        toggler ? " \u{2193}" : " \u{2191}"
+    private func handleSelection(_ option: ChooseParameter) {
+        if selection == option {
+            toggleArrow(for: option)
+        } else {
+            selection = option
+        }
+        performSort(for: option)
+    }
+    
+    private func toggleArrow(for option: ChooseParameter) {
+        arrowTogglers[option]!.toggle()
+        arrowSymbols[option] = arrowTogglers[option]! ? " \u{2191}" : " \u{2193}"
+    }
+    
+    private func performSort(for parameter: ChooseParameter) {
+        switch parameter {
+        case .cost:
+            array.sort {
+                arrowTogglers[parameter]! ? $0.hospitalPrice < $1.hospitalPrice : $0.hospitalPrice > $1.hospitalPrice
+            }
+        case .seniority:
+            array.sort {
+                arrowTogglers[parameter]! ? $0.seniority < $1.seniority : $0.seniority > $1.seniority
+            }
+        case .rating:
+            array.sort {
+                arrowTogglers[parameter]! ? $0.ratingsRating < $1.ratingsRating : $0.ratingsRating > $1.ratingsRating
+            }
+        }
+        
     }
 }
 
