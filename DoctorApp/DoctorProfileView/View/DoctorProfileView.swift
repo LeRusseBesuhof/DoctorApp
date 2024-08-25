@@ -1,14 +1,21 @@
 import SwiftUI
 
 struct DoctorProfileView: View {
-    @StateObject var viewModel : DoctorProfileViewModel
+    var profileImage : Image
+    var docData : User?
+    @State var isPricePagePushed : Bool = false
+    
+    init(_ profileImage: Image, _ docData: User?) {
+        self.profileImage = profileImage
+        self.docData = docData
+    }
     
     var body: some View {
-        if let docData = viewModel.docData {
+        if let docData {
             VStack(alignment: .leading, content: {
                 VStack(alignment: .leading, spacing: 40, content: {
                     HStack(spacing: 16, content: {
-                        viewModel.profileImage
+                        profileImage
                             .resizable()
                             .setupImage()
                         VStack(alignment: .leading, spacing: 3, content: {
@@ -61,11 +68,11 @@ struct DoctorProfileView: View {
                 .padding(.horizontal, 5)
                 Spacer()
                 Button("Записаться") {
-                    viewModel.isPricePagePushed.toggle()
+                    isPricePagePushed.toggle()
                 }
                 .setupButton()
             })
-            .navigationDestination(isPresented: $viewModel.isPricePagePushed,
+            .navigationDestination(isPresented: $isPricePagePushed,
                                    destination: {
                 ServiceView(
                     videoChatPrice: docData.videoChatPrice,

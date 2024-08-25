@@ -25,10 +25,8 @@ struct MainView: View {
                 .navigationDestination(isPresented: $viewModel.isPushed,
                                        destination: {
                     DoctorProfileView(
-                        viewModel: DoctorProfileViewModel(
-                            $viewModel.profileImage,
-                            $viewModel.chosenDoctor
-                        )
+                        viewModel.profileImage,
+                        viewModel.chosenDoctor
                     )
                 })
                 .navigationTitle("Педиатры")

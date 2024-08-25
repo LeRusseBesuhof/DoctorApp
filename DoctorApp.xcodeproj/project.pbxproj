@@ -29,7 +29,6 @@
 		37F4EF462C720A0900597F6A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F4EF452C720A0900597F6A /* Model.swift */; };
 		37F993AA2C77517F004FEBF3 /* DoctorStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F993A92C77517F004FEBF3 /* DoctorStackViewModel.swift */; };
 		37F993AC2C77571C004FEBF3 /* View.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F993AB2C77571C004FEBF3 /* View.ext.swift */; };
-		37F993B02C7776A6004FEBF3 /* DoctorProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F993AF2C7776A6004FEBF3 /* DoctorProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +56,6 @@
 		37F4EF452C720A0900597F6A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		37F993A92C77517F004FEBF3 /* DoctorStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorStackViewModel.swift; sourceTree = "<group>"; };
 		37F993AB2C77571C004FEBF3 /* View.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.ext.swift; sourceTree = "<group>"; };
-		37F993AF2C7776A6004FEBF3 /* DoctorProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				37F993AE2C777692004FEBF3 /* View */,
-				37F993AD2C777685004FEBF3 /* ViewModel */,
 			);
 			path = DoctorProfileView;
 			sourceTree = "<group>";
@@ -214,14 +211,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		37F993AD2C777685004FEBF3 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				37F993AF2C7776A6004FEBF3 /* DoctorProfileViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		37F993AE2C777692004FEBF3 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,7 +306,6 @@
 				37CDAB1B2C74BCDD001E8006 /* DoctorStackView.swift in Sources */,
 				37F4EF462C720A0900597F6A /* Model.swift in Sources */,
 				37F4EF422C71D04800597F6A /* SegmentControlView.swift in Sources */,
-				37F993B02C7776A6004FEBF3 /* DoctorProfileViewModel.swift in Sources */,
 				37CDAB112C7235C2001E8006 /* FontString.ext.swift in Sources */,
 				37CDAB162C7376F8001E8006 /* DoctorProfileView.swift in Sources */,
 				37F4EF402C71C4BA00597F6A /* SwiftUIView.swift in Sources */,
